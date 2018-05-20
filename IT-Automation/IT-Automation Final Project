@@ -1,0 +1,10 @@
+IT-Automation Final Project
+
+Objectives
+-  Configure monitoring and alerting on Prometheus.
+-  Configure the Chef server.
+-  Deploy Apache2 to multiple servers.
+-  Monitor the Apache2 service across the cluster.
+-  Configure alerts for the Apache2 service.
+
+Create documentation for Objectives
