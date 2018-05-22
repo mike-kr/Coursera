@@ -208,13 +208,165 @@ To raise difficulty, run password through hashing function multiple times (somet
 
 # Cryptography Applications
 ## Public Key Infrastructure
+**PKI** Public key infrastructure - defines the creation, storage, and distribution of digital certificates
 
+**Digital Certificate** - file that proves an entity owns a certain public key.  
+Contains:
+* Information on Public Key
+* Registered Owner
+* Digital Signature
 
+**CA** (certificate authority) - responsible for storing, issuing, and signing certificates
 
+**RA** (registration authority) - responsible for verify8ing the identities of any entities requesting certificates to be signed and stored with the CA.
 
+ A central repository is needed to securely store and index keys, and a certificate management system of some sort makes managing access to stored certificates and issuance of certificates easier.
 
+ SSL/TLS server certificate - certificate presents to a web server as part of the initial secure setup of an SSL/TLS connection
 
+Wildcard certificate - hostname is replaced with an * to validate all hosts in a domain
 
+Self-signed certificate - signed by the same entity issuing the certificate
+
+SSL/TLS client certificate (optional) - as the name implies, these are certificates that are **bound to clients** and are used to **authenticate** the client to the server, allowing access control to an SSL/TLS service.
+* usually the service operator would have their own internal CA which issues and manages client certificates for their own service
+
+Code-signing certificates - this allows users of these signed applications to verify the signatures and ensure that the application was not tampered with
+* used for signing executable programs
+* verifies that the application came from the author and is not a malicious twin
+
+PKI is built on trust.  
+The chain of trust starts at the *Root Certificate Authority*  
+* root certificates are self-signed because there is not a higher authority
+* can sign a certificate and set the CA field to true, thus marking the certificate as an intermediary or subordinate CA.
+  * this can be done down the chain
+
+A certificate that has no authority as a CA is referred to as an **end-entity** or **leaf certificate**
+
+Vendors ship trusted Root CA's with their OS to initiate the trust chain
+
+The **X.509** standard is what defines the format of digital certificates
+* also defines a **CRL** (certificate revocation list) which is a means to distribute a list of no longer valid certificates
+* current modern version is version 3
+
+Fields defined in X.509:
+* Version - what version of the X.509 standard the certificate adheres to
+* Serial number - a unique identifier for the certificate assigned by the CA which allows the CA to manage and identify individual certificates
+* Certificate Signature Algorithm - this field indicates what public key algorithm is used for the public key and what hashing algorithm is used to sign the certificate
+* Issuer Name - this field contains information about the authority that signed the certificate
+* Validity - this contains two sub-fields - "Not Before" and "Not After" - which define the dates when the certificate is valid for
+* Subject - this field contains identifying information about the entity the certificate was issued to
+* Subject Public Key Info - These two sub-fields define the algorithm of the public key, along with the public key itself
+* Certificate Signature Algorithm - same as the Subject Public Key Info field; these two fields must match
+* Certificate Signature Value - the digital signature data itself
+
+Certificate fingerprints - not included in the certificate itself but created by clients when validating or inspecting certificates
+* just hash digests of whole certificate
+
+Alternative to PKI is the **Web of Trust**
+* individuals instead of CA's sign other's public keys
+* Key signing parties
+
+[X.509 Standard](https://www.ietf.org/rfc/rfc5280.txt)
+## Cryptography in Action
+HTTPS - the secure version of HTTP, the HyperText Transport Protocol
+
+Encapsulates http over an SSL/TLS connection
+
+SSL 3.0 deprecated in 2015 and TLS 1.2 is the current recommended revision
+
+TLS is independent of HTTP and is a generic protocol to permit secure communications and authentication over a network
+
+TLS is also used for securing other communications such as:
+* VoIP calls
+* email
+* instant messaging
+* Wi-Fi network security
+
+TLS grants us 3 things:
+1. A **secure** communication line, which means data being transmitted is protected from potential eavesdroppers
+2. The ability to **authenticate** both parties communicating, though typically only the server is authenticated by the client
+3. The **integrity** of communications, meaning there are checks to ensure that messages aren't lost or altered in transit
+
+TLS Handshake
+1. a client establishes a connection with a TLS enabled service, referred to in the protocol as **ClientHello**
+  * Includes information about the client, like the version of the TLS that the client supports, a list of cipher suites that is supports, and maybe some additional TLS options
+2. Server responds with a **ServerHello** message
+  * selects the highest protocol version in common with the client, and chooses a cipher suite from the list to use.
+  * It also transmits its digital signature and a final **ServerHelloDone** message.
+3. The client then validates the certificate that the server sent over to ensure that it's trusted and it's for the appropriate host name.
+4. Assuming certificate checks out, the client sends a **ClientKeyExchange** message.
+5. The client then chooses a key exchange mechanism to securely establish a shared secret with the server which will be used with a symmetric encryption cipher to encrypt all further communications.  The client also sends a **ChangeCipherSpec** message indicating that it's switching to secure communications now that it has all the information needed to begin communicating over the secure channel.
+6.  Finally an **encrypted Finished** message is sent which also serves to verify that the handshake completed successfully.
+
+The session key is the shared symmetric encryption key used in TLS sessions to encrypt data being sent back and forth.
+
+To defend against private key compromises, **Forward Secrecy** - a property of a cryptographic system so that even if a private key is compromised, the session keys are still safe
+
+**SSH** (Secure Shell) - A secure network protocol that uses encryption to allow access to a network service over unsecured networks
+
+**PGP** (Pretty Good Privacy) - An encryption application that allows authentication of data, along with privacy from third parties, relying upon asymmetric encryption to achieve this
+
+[PGP](https://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html)
+
+## Securing Network Traffic
+VPN (Virtual Private Network) - A mechanism that allows you to remotely connect a host or network to an internal, private network, passing the data over a public channel, like the internet
+
+**IPsec** (Internet Protocol Security) - VPN protocol designed in conjunction with IPv6
+* encrypts an IP packet, then encapsulates the encrypted packet with an IPsec packet
+* IPsec packet is sent to VPN endpoint where it is decrypted and sent to its final destination
+* supports 2 modes of operations
+  * transport mode - only the payload of the IP packet is encrypted, leaving the IP headers untouched
+  * tunnel mode - the entire IP packet, header payload and all, is encrypted and encapsulated inside a new IP packet with new headers
+
+**L2TP** (Layer 2 Tunneling Protocol) - tunneling protocol that allows encapsulation of different protocols or traffic over a network that may not support the type of traffic being sent
+* not a vpn solution
+* doesn't provide encryption
+* commonly used with IPsec
+* can adjust, segregate, and manage the traffic
+
+L2TPIPsec - combination of IPsec and L2TP
+
+**Encapsulating Security Payload** - Part of the IPsec suite of protocols
+
+The **tunnel** is provided by L2TP which permits the passing of unmodified packets from one network to another.  The **secure channel**, on the other hand, is provided by IPsec, which provides confidentiality, integrity, and authentication of data being passed.
+
+**OpenVPN** - uses Open SSL Library
+* can operate over either TCP or UDP, typically over port 1194
+* relies on ethernet tap or layer 3 IP tunnel
+* up to 256 bit 
+* runs in userspace
+
+[IETF RFC 3193](https://tools.ietf.org/html/rfc3193)  
+[OpenVPN](https://openvpn.net/index.php/open-source.html)
+## Cryptographic Hardware
+**TPM** (Trusted Platform Module) - unique secret RSA key burned in during manufacturing
+* Secure generation of keys
+* Random number generation
+* Remote attestation - system authenticating its software and hardware configuration to a remote system
+* Data binding and sealing - using the secret key to derive a unique key that's then used for encryption of data
+
+Mobile devices have something similar to TPM called **secure element**  
+
+**TEE** (Trusted Execution Environment) provides a full-blown isolated execution environment that runs alongside the main OS
+
+TPM most common use cases:
+* ensure platform integrity, preventing unauthorized changes to the system either in software or hardware
+* full disk encryption utilizing the TPM to protect the entire contents of the disk
+
+**FDE** (Full Disk Encryption) - encrypts the entire disk, not just sensitive files and folders
+
+Common Implementations:
+* PGP
+* Bitlocker (Microsoft)
+* Filevault 2 (Apple)
+* dm-crypt (linux)
+
+Random numbers vs Pseudo-random
+
+Entropy pool - source of random data to help seed random number generators
+
+[Physical Attack on a TPM](https://gcn.com/Articles/2010/02/02/Black-Hat-chip-crack-020210.aspx)
 
 
 
