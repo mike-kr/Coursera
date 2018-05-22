@@ -105,5 +105,47 @@ Cons
 
 [RC4 NOMORE](https://www.rc4nomore.com/)
 
-## Public Key or Asymmetric Encryption
+# Public Key or Asymmetric Encryption
+## Asymmetric Cryptography
+Asymmetric Encryption - Different keys are used to encrypt and decrypt  
+* commonly used as key exchange mechanism to establish a shared secret that will be used with symmetric cipher
+
+**Public Key Signatures** - verifies authenticity of message by combining the message, digital signature, and public key
+* Public key should verify with the signature, otherwise the message shouldn't be trusted
+
+Asymmetric Encryption grants us:
+* Confidentiality - encryption decryption method
+* Authenticity - digital signature
+* Non-repudiation - author of message isn't able to dispute the origin of the message
+
+Asymmetric encryption is more computationally expensive and complex  
+
+**Message Authentication Codes (MACs)** - a bit of information that allows authentication of a received message, ensuring that the message came from the alleged sender and not a third party
+* also ensures data integrity
+
+**HMAC** - Keyed-hash message authentication code
+
+**CMACs** - Cipher-Based Message Authentication Codes
+
+**CBC-MAC** - Cipher block chaining message authentication codes
+
+## Asymmetric Encryption Algorithms
+**RSA** - Key generation uses 2 unique, very large, random, prime numbers
+
+**DSA (Digital Signature Algorithm)** - Used for signing and verifying data part of FIPS
+* depends on random seed value
+
+**DH (Diffie-Hellman)** - key exchange algorithm
+
+**PKI (Public Key Infrastructure**
+
+**ECC (Elliptic curve cryptography)** - A public-key encryption system that uses the algebraic structure of elliptic curves over finite fields to generate secure keys
+
+Both Diffie-Hellmen and DSA have elliptic curve variants, referred to as ECDH and ECDSA, respectively
+
+[Sony PS3](https://nakedsecurity.sophos.com/2012/10/25/sony-ps3-hacked-for-good-master-keys-revealed/)
+[Game Piracy](https://www.theguardian.com/technology/gamesblog/2011/jan/07/playstation-3-hack-ps3)
+
+# Hashing
+
 
