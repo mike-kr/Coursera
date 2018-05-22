@@ -147,5 +147,76 @@ Both Diffie-Hellmen and DSA have elliptic curve variants, referred to as ECDH an
 [Game Piracy](https://www.theguardian.com/technology/gamesblog/2011/jan/07/playstation-3-hack-ps3)
 
 # Hashing
+## Hashing
+**Hashing (or a hash function)** -  a type of function or operation that takes in an arbitrary data input and maps it to an output of fixed size, called a hash or digest
+
+You feed in any amount of data into a hash function and the resulting output will always be the same size, but the output should be **unique to the input**, such that two different inputs should never yield the same output.
+
+Hashing can also be used to identify duplicate data sets in databases or archives to speed up searching of tables or to remove duplicate data to save space.
+
+Cryptographic hashing is distinctly different from encryption because cryptographic hash functions should be one directional.  
+Used for :
+* authentication
+* message integrity
+* fingerprinting
+* data corruption detection
+* digital signatures
+* etcetera
+
+The ideal cryptographic hash function should be **deterministic**, meaning that the same input value should always return the same hash value.
+
+**Hash collisions** - two different inputs mapping to the same output
+
+Cryptographic hash functions operate on blocks of data like a Block Cipher
+## Hashing Algorithms
+**MD5**
+* 512 bit blocks
+* 128 bit hash digests
+* Hash collision and vulnerabilities
+
+**SHA1** - part of the Secure Hash Algorithm suite of functions, designed by the NSA, published in 1995
+* recommended replacement of MD5
+* 512 bit blocks
+* 160 bit hash digest
+* used in popular protocols like
+  * TLS/SSL
+  * PGP SSH
+  * IPsec
+  * Git
+
+In 2010, NIST recommended to stop using SHA1 and rely on SHA2 or SHA3 instead
+
+**MIC** (Message Integrity Check) - a hash digest of the message, like a check-sum
+* doesn't use security keys so attacker could alter message
+* protects against accidental corruption or loss
+* doesn't protect against tampering or malicious actions
+[Theoretical SHA1 Attacks](https://eprint.iacr.org/2005/010)
+[SHA1 Broken](https://www.schneier.com/blog/archives/2005/02/sha1_broken.html)
+[Partial Collision](https://eprint.iacr.org/2007/474)
+[Full Collision](https://shattered.io/)
+## Hashing Algorithms (continued)
+Authentication
+* store hash of password
+
+A successful brute force attack, against even the most secure system imaginable, is a function of attacker time and resources
+
+To raise difficulty, run password through hashing function multiple times (sometimes thousands)
+
+**Rainbow Tables** - pre-computated table of all possible password values and their hashes
+
+**Password Salt** - additional randomized data that's added into the hashing function to generate a hash that's unique to the password and salt combination
+
+# Cryptography Applications
+## Public Key Infrastructure
+
+
+
+
+
+
+
+
+
+
 
 
