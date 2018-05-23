@@ -140,3 +140,44 @@ Attackers may try to steal the SSO cookie or token
 * this also allows attackers to bypass multi-factor authentication since the 
 
 OpenID
+# Authorization
+## Authorization and Access Control Methods
+**Authorization** - pertains to describing what the user account has access to, or doesn't have access to
+
+OAuth
+## Access Control
+**OAuth** - an open standard that allows users to grant third-party websites and applications access to their information without sharing account credentials
+
+Can be thought of as a form of access delegation
+
+Authorization through Access tokens
+* access tokens have a scope (i.e. only email)
+
+OAuth permissions can be used in phishing-style attacks to gain access to accounts, **without requiring credentials** to be compromised
+
+OpenID is an authentication system while OAuth is specifically authorization
+
+OpenID Connect is an authentication layer built on top of OAuth 2.0 designed to improve upon OpenID and build better integration with OAuth authorizations
+
+TACACS+ is a full AAA system - once a user is authenticated, users are allowed or disallowed access to run certain commands or access certain devices.  This allows admin access for users that administer devices while still allowing less privileged access to other users when necessary
+
+RADIUS also allows authorization
+
+[OAuth based worm attack](https://www.theverge.com/2017/5/3/15534768/google-docs-phishing-attack-share-this-document-with-you-spam)
+
+## Access Control List
+**Access Control List (ACL)** - a way of defining permissions or authorizations for objects
+
+Most common - file permissions
+
+Individual settings - Access Control entries
+# Accounting
+## Tracking Usage and Access
+**Accounting** - keeping records of what resources and services your users accessed, or what they did when they were using your systems
+
+**Auditing** - reviewing of records to ensure nothing is out of the ordinary
+
+TACACS+ is a device access AAA system that manages who has access to your network devices and what they do on them.
+
+RADIUS is a network access AAA system
+
