@@ -131,7 +131,7 @@ STEPS:
 1. AP sends a nonce to the client
 2. Client sends its nonce to the AP + MIC
 3. AP sends the GTK + MIC
-4. Client resonds with an ACK
+4. Client responds with an ACK
 
 WPA2-Enterprise 802.1x
 
@@ -167,5 +167,76 @@ If your company values security over convenience, you should make sure that WPS 
 * Wash - tool that scans and enumerates aps that have WPS enabled
 
 # Network Monitoring
+## Sniffing the Network
+**Packet sniffing** (packet capture) - the process of intercepting network packets in their entirety for analysis
 
- 
+**Promiscuous Mode** - a type of computer networking operational mode in which all network data packets can be accessed and viewed by all network adapters operating in this mode
+
+**Port mirroring** - allows the switch to take all packets from a specified port, port range, or entire VLAN and mirror the packets to a specified switch port
+
+Hubs could be used as well but there are obvious drawbacks like reduced throughput and potential for introducing collisions
+
+For Wireless:  
+**Monitor mode** - allows us to scan across channels to see all wireless traffic being sent by APs and clients
+* must be near enough to AP and client to receive a signal
+
+Open Source wireless capture and monitoring utilities:
+* Aircrack-ng
+* Kismet
+
+## Wireshark and tcpdump
+libpcap  
+**Tcpdump** - a super popular, lightweight, command-line based utility that you can use to capture and analyze packets
+* -n flag overrides the hostname resolution
+* -x flag for hexadecimal digits or Capital X for hex in ASCII
+
+**Wireshark** 
+* can decode encrypted payloads if the encryption key is known
+* can identify and extract data payloads from file transfers through protocols like SMB or HTTP
+* allows filter rules like finding HTTP requests with specific strings in the URL
+  * http.request.uri matches "q=wireshark"
+
+Default colors:
+* green = TCP packets
+* light blue = UDP packets
+* dark blue = DNS traffic
+* black = highlights problematic TCP packets, like out of order, or repeated packets.
+
+Wireshark can filter via protocol: Over 2,000
+
+Has good protocol handling infiltration and understands and can follow tcp streams or sessions
+* this lets you quickly reassemble and view both sides of a tcp session so you can easily view the full two-way exchange of information between parties
+
+Wireshark has the ability to decode WPA and WEP encrypted wireless packets, if the passphrase is known
+
+Can view Bluetooth traffic with the right hardware along with USB traffic and other protocols like Zigbee
+
+Supports **file carving** - extracting data payloads from files transferred over unencrypted protocols like HTTP file transfers or FTP and it's able to extract audio streams from unencrypted VOIP traffic 
+
+**Traffic Analysis**
+
+[Promiscuous Mode on Linux](https://it.awroblew.biz/linux-how-to-checkenable-promiscuous-mode/)  
+[Promiscuous Mode on Mac OS X](https://danielmiessler.com/blog/entering-promiscuous-mode-os-x/)  
+[Promiscuous Mode on Windows](http://lifeofageekadmin.com/how-to-manually-change-your-nic-to-promiscuous-mode-on-windows-72008-r2/)
+## Intrusion Detection/Prevention Systems
+**Intrusion Detection and Prevention Systems (IDS/IPS)** - IDS or IPS systems operate by monitoring network traffic and analyzing it
+
+IDS only detects and logs while IPS can adjust firewall rules on the fly
+
+Can be host or network based
+
+**Network Intrusion Detection System (NIDS)** - the detection system would be deployed somewhere on a network where it can **monitor traffic** for a network segment or subnet
+
+Must have two NICs
+
+**Port Mirroring Functionality** 
+
+Popular systems:
+* Snort
+* Suricata
+* Bro NIDS
+
+**Network Intrusion Prevention System (NIPS)** - must be placed in line with the traffic being monitored.
+
+**Signatures** - unique characteristics of known malicious traffic
+
