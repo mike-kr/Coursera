@@ -103,3 +103,25 @@ When you implement a full disk encryption solution at scale, it's super importan
 
 # Application Hardening
 ## Software Patch Management
+As an IT Support Specialist, it's critical that you make sure that you install software updates and security patches in a timely way, in order to **defend your company's systems and networks**.
+
+The best protection is to have a **good system and policy** in place for your company.
+
+* Microsoft SCCM
+* Puppet Puppet
+
+
+Critical infrastructure devices should be approached **carefully** when you apply updates.  there's always the risk that a software update will introduce a new bug that might affect the **functionality** of the device.
+
+## Application Policies
+A common recommendation, or even a requirement, is to only support or require the **latest version** of a piece of software.
+
+It's generally a good idea to **disallow risky classes** of software by policy.  Things like file sharing software and piracy-related software tend to be closely associated with malware infections.
+
+Understanding **what your users need** to do their jobs will help shape your approach to software policies and guidelines.
+
+Helping your users accomplish tasks by recommending or supporting specific software makes for a more **secure environment**.
+
+
+Extensions that require full access to websites visited can be risky, since the extension developer has the power to modify pages visited.
+
