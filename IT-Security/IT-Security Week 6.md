@@ -62,5 +62,29 @@ Helping others keep security in mind will help decrease the security burdens you
 You also need to justify why these are good behaviors to adopt.
 
 # Incident Handling
+## Incident Reporting and Analysis
+The very first step of handling an incident is to **detect it** in the first place.
 
+The next step is to **analyze it** and **determine the effects** and scope of damage.
+
+Once the scope of the incident is determined, the next step is **containment**.  
+If an account was compromised, change the password immediately.  If the owner is unable to **change the password** right away, then **lock the account**.
+
+**Severity** includes factors like what and how many systems were compromised, and how the breach affects business functions.  
+The **impact** of an incident is also an important issue to consider.
+
+**Data exfiltration** - the unauthorized transfer of data from a computer
+
+**Recoverablity** - how complicated and time-consuming the recovery effort will be
+
+## Incident Response and Recovery
+Forensic analysis  
+Cloned Image
+
+Post-mortems
+
+Test
+
+Update firewall rules and ACLs if an exposure was discovered int he course of the investigation  
+Create new definitions and rules for intrusion detection systems that can watch for the signs of the same attack again.  
 
