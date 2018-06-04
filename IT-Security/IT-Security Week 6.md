@@ -35,3 +35,32 @@ Once different data classes are defined, you should create **guidelines** around
 
 # Users
 ## User Habits
+You can build the world's best security systems, but they won't protect you if the users are going to be practicing **unsafe security**.
+
+You should **never upload confidential information** onto a third-party service that hasn't been evaluated by your company.
+
+It's important to **make sure employees use new and unique passwords**, and don't reuse them from other services.
+
+A much greater risk in the workplace that users should be educated on is **credential theft** from phishing emails.
+
+If someone entered their password into a phishing site, or even suspects they did, it's important to **change their password** as soon as possible.
+
+[Password Alert Chrome Extension](https://support.google.com/a/answer/6197508?hl=en)
+
+## Third-Party Security
+If they have subpar security, you're undermining your security defenses by potentially opening a new avenue of attack.
+
+Vendor risk review or security assessment
+* Questionnaire
+* If you can, ask for a third-party security assessment report
+
+[Vendor Security Assessment Questionnaires](https://vsaq-demo.withgoogle.com/)
+
+## Security Training
+Helping others keep security in mind will help decrease the security burdens you'll have as an IT Support Specialist.
+
+You also need to justify why these are good behaviors to adopt.
+
+# Incident Handling
+
+
