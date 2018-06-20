@@ -24,6 +24,7 @@ Small, but growing, employee base, with 50 employees in one small office.   The 
 * VLAN configuration recommendations
 * Laptop security configuration
 * Application policy recommendations
+* Security and privacy policy recommendations
 * Intrusion detection or prevention for systems containing customer data
 
 ## Authentication System
@@ -110,6 +111,25 @@ Allowing the least amount of applications necessary to complete job duties is re
 ## Intrusion Detection / Prevention
 Networks should be monitored constantly.  Utilizing tcpdump or even better, wireshark can help you catch problems and intrusions quickly.  Introducing an IDPS (intrusion prevention system) will monitor and analyze network traffic.  IDPS opposed to IDS (intrusion detection system) can adjust firewall rules on the fly where as IDS can only detect and alert.  This difference could make all the difference in shutting down attacks before they get out of hand. 
 
-## Security as a culture
+## Security as a Culture and Privacy Policy
+### Security Policy
+
 Users are a weak link in security.  If the right people are compromised, then your entire preventative security systems are for naught.  Users should be trained on security practices like never uploading confidential information onto a third-party service that hasn't been evaluated by the company.  Employees should understand the importance of strong, unique passwords and why they must trade convenience for security.  They must be educated and vigilant for phishing attempts.  Incidents will happen.  The important thing is to learn from them and solve the root issue.  Post-mortems and analysis are not times to assign blame or berate and individual.  It is time to promote the importance of security as a culture.
+
+### Privacy Policy
+
+It is our recommendation that your privacy policy is in compliance with the new GPDR standard even if you do not currently do business under EU jurisdiction.  We recommend collecting the least amount of information necessary taking strict, secure, access and storage measures.  Your privacy policy should include the following at a minimum:
+
+* What personal data you collect / store
+* How you have obtained the data fairly with the necessary consent requirements
+* Inform the data subjects of the specific uses of the data clearly and unambiguously
+* Inform the data subjects of their right to withdraw consent at any time
+* Ensure data isn't held longer than is necessary and that the data is up-to-date
+* Describe how you are keeping the data safe and secure and limitations of access
+* Announce the collection of any special categories of personal data and how you are meeting the standards to collect, process, and store it
+* If transferring data, explain how you are protecting data in transit
+
+
+
+
 
